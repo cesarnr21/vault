@@ -1,19 +1,49 @@
-# vault
+# Vault
 Just random stuff that I might need later
 
-> disclaimer: images in this repo are not owned by me and are just reference to me
+> disclaimer: some images, 3D models, and other content in this repo are downloaded from the interent and are not owned by me.
+
 
 -----------------------------------------------------
 
-## utilities
 
-TO DO:
+## Utilities
+### Utility to Create a Markdown tables of content:
+#### Issues
+- [ ] scrip currenctly picks up all `#` occurences, some unwanted cases can be comments in fenced code blocks
+    Some solutions:
+    - replace `if '#' in lines:` with `if lines[0] == '#' in lines:`
+    - what about headers that are created using `----` abd `====`
+
+- [ ] Adding color to background requires using html which doesn't play nice with markdown, would probably have to write separate code for html
+```html
+<div style="white-space:pre">
+<p style="background-color:#EFEBEC;">
+* [Utilities](#utilities)
+    * [TO DO:](#to-do:)
+    * [Downloading utility](#downloading-utility)
+    * [add a mac section with these.](#add-a-mac-section-with-these.)
+    * [Update all Git projects](#update-all-git-projects)
+    * [Send utiltity](#send-utiltity)
+    * [Utility to format](#utility-to-format)
+    * [Bulk email Sender](#bulk-email-sender)
+    * [Read and Create PDFs](#read-and-create-pdfs)
+    * [Compress Files](#compress-files)
+    * [Spelling and Grammar Corrector](#spelling-and-grammar-corrector)
+
+</div>
+
+<p>Some Markdown text with <span style="color:blue">some <em>blue</em> text</span>.</p>
+```
+
+### TO DO:
 
 - [ ] `drive.sh`: check if it is ubuntu and then install google drive
 - [ ] add error handling to all
 - [ ] improve `arduino_utilities.h`
 - [ ] add utility to safe stuff to google drive, google sheets
-- [ ] scheduler utilit
+- [ ] scheduler utility
+- [ ] utility to parse a markdown file and insert a table of contents somewhere 
 - [ ] format code utility
 
 ### Downloading utility
