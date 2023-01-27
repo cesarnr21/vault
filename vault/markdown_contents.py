@@ -8,34 +8,52 @@ It looks for the string `[Insert Table of Contents Here]` and will place the ToC
 from pathlib import Path
 
 
+def main():
+    project_path = Path(__file__).parent.parent / 'data/'
+    file_name = project_path / 'test.md'
+
+    #file_name = project_path.parent / 'README.md'
+
+    """COMMENT OUT WHEN NOT USING"""
+    #file = Path(input('Enter full path for file: '))
+
+    contents, headers, placement = file_parser(file_name)
+    generate_table(file_name, contents, headers, placement, '*')
+
+
 def hdr_cleanup(headers: list, fenced_blocks: list, hdr_point: list) -> list:
     """
     Description
     -----------
-    Used to cleanup the header, in markdown files, `#` can be used 
-    - The first .pop() is used to remove the overall header.
-    - `to_rm` is used to store the indexes of `#` characters inside fenced-code blocks.
-    - Lastly, important to remove indexes from both `header` and `hdr_point` to keep 
-        the indexing between the two consistent.
+    Used to cleanup the header, finds uneccessary `#` characters and removes them
 
     Parameters
     ----------
-    headers: a list that includes all the headers in format [index, header_rank, header_string]
+    headers: `list`
+        - a list that includes all the headers in format [index, header_rank, header_string]
         elements from this lists are being removed, and then gets returned.
-    
-    hdr_point: includes a copy of the indexes from headers and is easier to use.
+
+    hdr_point: `list`
+        - includes a copy of the indexes from headers and is easier to use.
     """
     to_rm = [ ]
+
+    # used to remove `#` characters inside fenced-code blocks
     for i in range(len(fenced_blocks)):
         if i % 2 == 0:
             for x in hdr_point:
                 if fenced_blocks[i] <= x <= fenced_blocks[i + 1]:
                     to_rm.append(x)
 
-    if headers[0][0] == 0:
-        headers.pop(0)
-        hdr_point.pop(0)
+    # trying to remove other '#' characters
+    # for iter in headers:
+    #     if (iter[0] not in to_rm) and iter[2][0] != '#':
+    #         to_rm.append(headers.index(iter))
 
+    if headers[0][0] == 0:              # remove the main title header
+        to_rm.append(0)
+
+    # remove indexes from both `header` and `hdr_point` to keep the indexing between the two consistent
     for i in to_rm:
         where = hdr_point.index(i)
         headers.pop(where)
@@ -44,7 +62,7 @@ def hdr_cleanup(headers: list, fenced_blocks: list, hdr_point: list) -> list:
     return headers
 
 
-def file_parser(file_name: str) -> tuple(list, list, int):
+def file_parser(file_name: str):
     """
     Description
     -----------
@@ -53,12 +71,15 @@ def file_parser(file_name: str) -> tuple(list, list, int):
 
     Return
     ------
-    contents: includes all of the content from the file. This is due to the fact later in the script,
+    contents : `list[str]`
+        - includes all of the content from the file. This is due to the fact later in the script,
         writing the file removes all of the content of the file, so it has to be rewritten
 
-    headers: a list that includes all the headers in format [index, header_rank, header_string]
+    headers: `list`
+        - a list that includes all the headers in format `[index, header_rank, header_string]`
 
-    placement: stores the line where the table of contents will be inserted
+    placement: `int`
+        - stores the line where the table of contents will be inserted
     """
     with open(file_name, 'r') as file:
         contents = file.readlines()
@@ -80,7 +101,8 @@ def file_parser(file_name: str) -> tuple(list, list, int):
         placement = contents.index('[Insert Table of Contents Here]\n')
     except ValueError:
         # here look for similar wording to the string above
-        pass
+        print('insertion string not found')
+        exit() # remove this after adding exception handling
 
     header = hdr_cleanup(headers, fenced_blocks, hdr_point)
 
@@ -91,14 +113,16 @@ def generate_table(file_name: str, contents: list, headers: list, placement: int
     """
     Description
     -----------
-    Creates the Table of Contents and rewrittes the file with the table at the 
+    Creates the Table of Contents and rewrittes the file with the table at the index where the string is placed
 
     Parameters
     ----------
-    contents: due to a python/computing limitation, when writing data to file, it can only be appended at the end
+    contents: `list[str]`
+        - due to a python/computing limitation, when writing data to file, it can only be appended at the end
         or all content from the file is overwritten.
 
-    delimeter: character used for bullet points, acceptable characters `['', '-', '*']` default is None. 
+    delimeter: `str`
+        - character used for bullet points, acceptable characters `['', '-', '*']` default is None. 
     """
     table = f'## Table of Contents\n'
     new_file = [ ]
@@ -112,9 +136,10 @@ def generate_table(file_name: str, contents: list, headers: list, placement: int
     for line in headers:
         hold = line[2].partition((line[1] * '#') + ' ')[2].partition('\n')[0]
         new_line = new_line = hold.lower().replace(' ', '-')
-        tab = '    '
+        tab = 4 * ' '
         table = table + ((line[1] - max_rank) * tab) + f'{delimeter} [{hold}](#{new_line})\n'
 
+    table = table + '\n' + (60 * '-') + '\n'
     new_file = contents[:placement]
     new_file.append(table)
     new_file.append(contents[placement + 1:])
@@ -122,13 +147,6 @@ def generate_table(file_name: str, contents: list, headers: list, placement: int
     with open(file_name, 'w+') as file:
         for line in new_file:
             file.writelines(line)
-
-
-def main():
-    project_path = Path(__file__).parent.parent / 'data/'
-    file_name = project_path / 'test.md'
-    contents, headers, placement = file_parser(file_name)
-    generate_table(file_name, contents, headers, placement, '*')
 
 
 if __name__ == '__main__':
