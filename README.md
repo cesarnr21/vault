@@ -23,6 +23,12 @@ Just random stuff that I might need later
 
 
 ## Utilities
+### Formatter for Drone Footage
+Issues with Drone footage:
+- file extensions are capitalized
+- pictures taken with phone are have `.HEIC` file extension, compatability issues
+
+
 ### Create Table of Contents for Markdown
 #### Issues
 - [ ] Don't remove top header, just change to example: **`Title Header - Vault`**
