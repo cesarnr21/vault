@@ -203,16 +203,16 @@ brew install --cask qlmarkdown
 
 Use the command below in terminal:
 ```sh
-$ defaults write <Bundle-Identifier> NSRequiresAquaSystemAppearance -bool yes
+$ defaults write [ Bundle-Identifier ] NSRequiresAquaSystemAppearance -bool yes
 ```
 To find an applications bundle ID, use the command below
 ```sh
-$ osascript -e 'id of app "<App-Name>"'
+$ osascript -e 'id of app "i[ app name ]"'
 ```
 
 To undo try:
 ```sh
-$ defaults delete <Bundle-Identifier> NSRequiresAquaSystemAppearance
+$ defaults delete [ Bundle-Identifier ] NSRequiresAquaSystemAppearance
 ```
 
 ### Terminal Customization
