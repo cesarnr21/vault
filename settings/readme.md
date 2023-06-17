@@ -1,12 +1,15 @@
 # Settings for all systems
 * [Settings for all systems](#settings-for-all-systems)
   * [Linux Configurations](#linux-configurations)
-      * [Mounting Google drive on Linux](#mounting-google-drive-on-linux)
+    * [Remove Default home directories](#remove-default-home-directories)
+    * [Mounting Google drive on Linux](#mounting-google-drive-on-linux)
   * [VSCode Shortcuts](#vscode-shortcuts)
   * [Vim configuration](#vim-configuration)
   * [Mac Configurations](#mac-configurations)
     * [Some apps to use light mode or dark mode](#some-apps-to-use-light-mode-or-dark-mode)
   * [Terminal](#terminal)
+
+Run script `configure.sh` to set up some of these settings
 
 ## Linux Configurations
 
@@ -25,13 +28,23 @@ LidSwitchIgnoreInhibited=no
 $ sudo service systemd-logind restart
 ```
 
-#### Mounting Google drive on Linux
+### Remove Default home directories
+Edit files `~/.config/user-dirs.dirs` and `/etc/xdg/user-dirs.defaults` and edit/removes the folders you don't want
+
+update with command:
+```sh
+$ xdg-user-dirs-update
+```
+
+### Mounting Google drive on Linux
 
 - [on github](https://github.com/astrada/google*drive*ocamlfuse)
 
 - [more instructions](https://linuxhint.com/mount_google_drive_linux_mint/)
 
 - [compere these](https://ostechnix.com/how*to*mount*google*drive*locally*as*virtual*file*system*in*linux/)
+
+
 
 
 ## VSCode Shortcuts
@@ -125,7 +138,7 @@ set tabstop=4
 set number
 set numberwidth=2
 
-" add command to save file with priviliges
+" add command to save file with sudo
 command W :execute ':silent w !sudo tee % > /dev/null' | :edit!
 ```
 
