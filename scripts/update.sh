@@ -1,4 +1,4 @@
-
+#!/bin/sh
 # update all packages
 
 # for apt packages

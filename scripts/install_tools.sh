@@ -1,4 +1,4 @@
-
+#!/bin/sh
 if [ "$(uname)" == "Darwin" ]; then
     echo "running MacOS configuration"
     brew update
