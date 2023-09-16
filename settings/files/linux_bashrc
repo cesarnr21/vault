@@ -8,5 +8,6 @@ export CLICOLOR=1
 # some shortcuts to main folders
 export downloads=/home/cesar/download
 alias rebash="source ~/.bashrc"
-
+alias bat="/usr/bin/batcat"
 cat ~/.login_message
+
