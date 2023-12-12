@@ -9,5 +9,4 @@ export CLICOLOR=1
 export downloads=/home/cesar/download
 alias rebash="source ~/.bashrc"
 alias bat="/usr/bin/batcat"
-cat ~/.login_message
 

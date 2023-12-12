@@ -4,17 +4,6 @@ Just random stuff that I might need later
 > disclaimer: some images, 3D models, and other content in this repo are downloaded from the interent and are not owned by me.
 
 
-## Table of Contents
-* [Vault](#vault)
-  * [Table of Contents](#table-of-contents)
-  * [Utilities](#utilities)
-    * [Formatter for Drone Footage](#formatter-for-drone-footage)
-    * [TO DO:](#to-do)
-    * [Downloading utility](#downloading-utility)
-
-------------------------------------------------------------
-
-
 ## Utilities
 ### Formatter for Drone Footage
 Issues with Drone footage:
@@ -38,5 +27,3 @@ download stuff from:
 - youtube
 
 for ig and titkok: <https://github.com/PabloEscobar1337/tiktok-and-instagram-content-downloader/tree/main/lib>
-
-

@@ -1,0 +1,23 @@
+syntax on
+
+" edits by cesar
+" use spaces instead of tabs
+set expandtab
+
+" set 1 tab to 4 spaces
+set shiftwidth=4
+set tabstop=4
+
+" for mac
+set backspace=indent,eol,start
+
+" show line number
+set number
+set numberwidth=2
+
+" when opening a new file with split, open the file at the bottom or right panel
+set splitbelow
+set splitright
+
+" save file with priviliges
+command W :execute ':silent w !sudo tee % > /dev/null' | :edit!

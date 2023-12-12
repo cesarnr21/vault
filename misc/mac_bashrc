@@ -7,13 +7,6 @@ export PS1="\[\033[36;1m\]\u@\h:\[\033[33;1m\]\w\[\033[31m\]\$(parse_git) \[\033
 export CLICOLOR=1
 export LSCOLORS=ExFxBxDxCxegedabagacad
 
-# some shortcuts to main folders
-export local=/Users/cesarnunezrodriguez/local
-export projects=/Users/cesarnunezrodriguez/local/projects
-export drive=/Users/cesarnunezrodriguez/drive
-export onedrive=/Users/cesarnunezrodriguez/OneDrive
-export personal=$drive/personal
-export downloads=/Users/cesarnunezrodriguez/Downloads
 alias rebash="source ~/.bashrc"
 
 code () {
@@ -27,9 +20,3 @@ chrome () {
 subl () {
     open $1 -a "Sublime Text (4107)"
 }
-
-# added by cesar
-
-cat ~/.login_message
-
-cd $local
